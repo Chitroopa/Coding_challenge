@@ -1,0 +1,10 @@
+class Solution:
+    def maxPower(self, s: str) -> int:
+        powerString = [1]
+        for i in range(0,len(s)-1):
+            if s[i] == s[i+1]:
+                powerString[-1] = powerString[-1] + 1
+            else:
+                powerString.append(1)
+        return max(powerString)
+        
