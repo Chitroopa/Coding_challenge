@@ -1,0 +1,23 @@
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
+        numstemp = nums1[0:m]
+        del nums1[:]
+        i_p = j_p = 0
+        while(i_p < m) and (j_p < n):
+            if numstemp[i_p] <= nums2[j_p]:
+                nums1.append(numstemp[i_p])
+                i_p = i_p + 1
+            else:
+                nums1.append(nums2[j_p])
+                j_p = j_p + 1
+        if i_p == m:
+            nums1.extend(nums2[j_p:])
+        else:
+            nums1.extend(numstemp[i_p:])
+        
+                
+        
+        
