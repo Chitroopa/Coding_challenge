@@ -1,0 +1,14 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        robDict = {}
+        def robHouse(i: int) -> int:
+            if i>=len(nums):
+                return 0;
+            if i in robDict:
+                return robDict[i]
+            else:
+                robDict[i] = max(nums[i]+robHouse(i+2), robHouse(i+1))
+                return robDict[i]
+        return robHouse(0)
+    
+        
