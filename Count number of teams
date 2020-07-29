@@ -1,14 +1,22 @@
 class Solution:
     def numTeams(self, rating: List[int]) -> int:
-        n = 0
+        def teamSplit(rating: List[int]) -> int:
+            tb1 = [0]
+            tb2 = [0,0]
+            for j in range(1 ,len(rating)):
+                s = 0
+                for i in range(0, j):
+                    if rating[i] < rating[j]:
+                        s += 1;
+                tb1.append(s)
+            for k in range(2, len(rating)):
+                n = 0
+                for j in range(0, k):
+                    if rating[j] < rating[k]:
+                        n += tb1[j]
+                tb2.append(n)
+            return sum(tb2)
         if len(rating) < 3:
             return 0
-        for i in range(len(rating)):
-            for j in range(i+1, len(rating)):
-                for k in range(j+1, len(rating)):
-                    if rating[i] > rating[j] and rating[j] > rating[k]:
-                        n = n+1
-                    if rating[i] < rating[j] and rating[j] < rating[k]:
-                        n = n+1
-        return n
-                    
+        return teamSplit(rating) + teamSplit(rating[::-1])
+ 
