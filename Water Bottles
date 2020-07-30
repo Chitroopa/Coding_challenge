@@ -1,0 +1,16 @@
+class Solution:
+    def numWaterBottles(self, numBottles: int, numExchange: int) -> int:
+        drink = 0
+        div = 0
+        rem = 0
+        if numBottles < numExchange:
+            return numBottles
+        drink += numBottles
+        while True: 
+            div = int(numBottles / numExchange)
+            rem = numBottles % numExchange
+            drink += div
+            if div + rem < numExchange:
+                break
+            numBottles = div + rem             
+        return drink
