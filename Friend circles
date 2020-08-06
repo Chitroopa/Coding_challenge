@@ -1,0 +1,21 @@
+class Solution:
+    def findCircleNum(self, M: List[List[int]]) -> int:
+        def dfs(node: int):
+            for i in range(n):
+                if M[node][i] == 1 and i not in visited:
+                    stack.append(i)
+                    visited.add(i)          
+            
+        visited = set()
+        stack = []
+        n = len(M)
+        groups = 0
+        for node in range(n):
+            if node not in visited:
+                stack.append(node)
+                visited.add(node)
+                while stack:
+                    dfs(stack.pop())
+                groups += 1
+        return groups 
+                    
