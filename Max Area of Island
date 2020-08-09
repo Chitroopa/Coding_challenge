@@ -1,0 +1,30 @@
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        #intialization
+        max_island_area = 0
+        island_area = 0
+        queue = []
+        directions =[(0,1),(0,-1),(1,0),(-1,0)]
+        
+        # map traverse
+        for i in range(len(grid)):
+            for j in range(len(grid[i])):
+                if grid[i][j] == 1:
+                    if island_area > max_island_area:
+                        max_island_area = island_area
+                    island_area = 0
+                    queue.append((i,j))
+                    island_area += 1
+                    grid[i][j] = 2
+                while queue:
+                    curr_i, curr_j = queue.pop(0)
+                    for di,dj in directions:
+                        new_i = di+curr_i
+                        new_j = dj+curr_j
+                        if 0<= new_i <len(grid) and 0<= new_j < len(grid[0]) and grid[new_i][new_j] == 1:
+                            queue.append((new_i,new_j))
+                            island_area += 1
+                            grid[new_i][new_j] = 2
+        
+        return max(max_island_area, island_area)
+        
