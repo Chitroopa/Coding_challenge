@@ -1,0 +1,12 @@
+from collections import Counter
+import heapq
+class Solution:
+    def topKFrequent(self, words: List[str], k: int) -> List[str]:
+        freq_dict = Counter(words)
+        heap = []
+        for word, counter in freq_dict.items():
+            heappush(heap,(-counter, word))
+        result = []
+        while heap:
+            result.append(heappop(heap)[1])
+        return result[:k]
