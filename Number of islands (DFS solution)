@@ -1,0 +1,28 @@
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        #intialization
+        directions = [(0,1),(0,-1),(1,0),(-1,0)]
+        island = 0
+        stack = []
+        row = len(grid)
+        
+        # traversal 
+        
+        for i in range(row):
+            for j in range(len(grid[i])):
+                if grid[i][j] == "1":
+                    island += 1
+                    stack.append((i,j))
+                    grid[i][j] = "2"
+                # DFS traversal
+                while stack:
+                    cur_i, cur_j = stack.pop()
+                    for di, dj in directions:
+                        new_i = di+cur_i
+                        new_j = dj+cur_j
+                        if 0 <= new_i < row and 0 <= new_j <len(grid[0]) and grid[new_i][new_j] == "1":
+                            stack.append((new_i,new_j))
+                            grid[new_i][new_j] = "2"
+        return island
+        
+        
