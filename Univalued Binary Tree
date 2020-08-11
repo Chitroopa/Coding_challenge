@@ -1,0 +1,24 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isUnivalTree(self, root: TreeNode) -> bool:
+        
+        # pre-order traversal
+        def preOrderTree( root: TreeNode) -> bool:
+            
+            if not root:
+                return True
+            
+            currLeft = root.left.val if root.left else root.val 
+            currRight = root.right.val if root.right else root.val
+                
+            return (root.val == currLeft == currRight) and preOrderTree(root.left) and preOrderTree(root.right)
+            
+                
+        # Driver module
+        return preOrderTree(root)
+                
