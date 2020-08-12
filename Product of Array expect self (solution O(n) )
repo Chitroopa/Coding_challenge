@@ -1,0 +1,31 @@
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+
+        def findProduct( nums: List[int]) -> List[int]:
+            product_list = []
+            product = 1
+            for n in range(len(nums)):
+                if n == 0:
+                    product_list.append(1)             
+                else:
+                    product_list.append(product)
+                product *= nums[n]
+            return product_list
+        
+        # driver module
+        
+        # input validation
+        if not nums and len(nums) == 1:
+            return nums
+        
+        left_product = findProduct(nums)
+        right_product = findProduct(nums[::-1])
+        right_product = right_product[::-1]
+       
+        final_product = []
+        for n in range(len(nums)):
+            final_product.append(left_product[n] * right_product[n])
+        return  final_product          
+                
+                
+        
