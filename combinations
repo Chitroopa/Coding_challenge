@@ -1,0 +1,17 @@
+class Solution:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        result = []
+        output = []
+      
+        def combinations(index: int, result: List[int]):
+            if index > n: return
+            if len(result) == k:
+                output.append(result)
+                return
+            temp = result.copy()
+            result.append(index+1)                        
+            combinations(index+1 , temp)            
+            combinations(index+1, result.copy())
+            
+        combinations(0,result)          
+        return output
