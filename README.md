@@ -1,2 +1,2 @@
 # Coding_challenge
-Leetcode problem solving
+Leetcode and Hacker Rank problem solving
