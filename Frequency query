@@ -1,0 +1,60 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+import collections
+
+# Complete the freqQuery function below.
+def freqQuery(queries):
+    result = {}
+    freq = {}
+    output = []
+    for cmd,num in queries:
+        if cmd == 1:
+            if result.get(num):
+                freq[result[num]] -= 1
+                result[num] += 1                
+            else: result[num] = 1
+            freq[result[num]] = freq.get(result[num],0) +1
+            
+            # print('cmd1 result', result)
+            # print('cmd1 freq', freq)
+
+        if cmd == 2:
+            if result.get(num):
+                freq[result[num]] -= 1
+                if result[num] == 1:
+                    del result[num]
+                else:                    
+                    result[num] -= 1
+                    freq[result[num]] = freq.get(result[num],0) +1
+                # print('cmd2 result', result)
+                # print('cmd2 freq', freq)
+
+        if cmd == 3:            
+            if freq.get(num):
+                output.append(1)
+            else:
+                output.append(0)
+    # print(freq)
+    return output
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    q = int(input().strip())
+
+    queries = []
+
+    for _ in range(q):
+        queries.append(list(map(int, input().rstrip().split())))
+
+    ans = freqQuery(queries)
+
+    fptr.write('\n'.join(map(str, ans)))
+    fptr.write('\n')
+
+    fptr.close()
