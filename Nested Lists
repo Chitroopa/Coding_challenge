@@ -1,0 +1,27 @@
+def secondLowest(students):
+    lowest = float('inf')
+    second_lowest = float('inf')
+    result = []
+    for i in range(len(students)):
+        name, score = students[i]
+        if score < lowest:
+           second_lowest = lowest
+           lowest = score
+        elif lowest < score < second_lowest:
+            second_lowest = score
+    for i in range (len(students)):
+        name, score = students[i]
+        if score == second_lowest:
+            result.append(name)
+    result.sort()
+    for n in result : print(n)
+
+
+if __name__ == '__main__':
+    students = []
+    for _ in range(int(input())):
+        name = input()
+        score = float(input())
+        students.append([name,score])
+    secondLowest(students)
+    
