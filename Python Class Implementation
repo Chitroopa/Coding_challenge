@@ -1,0 +1,39 @@
+from abc import ABC, abstractmethod
+class Base(ABC):
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+    @abstractmethod
+    def multiplication(self):
+        pass
+
+class IntOperations(Base):
+    def __init__(self, a: int , b: int):
+        self.a = a
+        self.b = b
+    def __init__(self):
+        self.a = 1
+        self.b = 1
+    def addition(self):
+        return self.a + self.b
+    def subration(self):
+        return self.a - self.b
+    def multiplication(self):
+        print("unsupported")
+    def division(self):
+        try:
+            return self.a / self.b
+        except Exception as e:
+            print(f"Unsupport operation: {e}")
+        finally:
+            print("bye")
+            
+inp = IntOperations()
+print(inp.addition())
+print(inp.subration())
+print(inp.multiplication())
+print((inp.division()))
+
+        
+        
+        
