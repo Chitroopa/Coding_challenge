@@ -1,0 +1,24 @@
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        def maxHeight(height : List[int]) -> List[int]:
+            max_height = 0
+            length = len(height)
+            height_lookup = [0]*length
+            for i in range(length):
+                if height[i] >= max_height:
+                    max_height = height[i]
+                else: height_lookup[i] = max_height
+            return height_lookup
+        left_max_lookup = maxHeight(height)
+        right_max_lookup = (maxHeight(height[::-1])[::-1])
+        # print("left",left_max_lookup)
+        # print("right", right_max_lookup)
+        
+        trap_units = 0
+        for i in range(len(height)):
+            trap_height = min(left_max_lookup[i],right_max_lookup[i])
+            if trap_height > height[i] :
+                trap_units += trap_height - height[i]
+        return trap_units
+                    
+        
