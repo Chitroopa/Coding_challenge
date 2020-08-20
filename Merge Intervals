@@ -1,0 +1,21 @@
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        #input validation
+        if len(intervals) < 2:
+            return intervals
+        #sorting
+        intervals_s = sorted(intervals, key=lambda x:x[0])
+        result = [intervals_s[0]]
+        
+        for i in range(1,len(intervals_s)):
+            curr_lower_limit, curr_upper_limit = intervals_s[i]
+            lower_limit,upper_limit = result[-1]
+            
+            if curr_upper_limit < upper_limit:
+                continue
+            elif curr_upper_limit > upper_limit and curr_lower_limit <= upper_limit:
+                result[-1] = [lower_limit, curr_upper_limit]
+            elif curr_lower_limit > upper_limit:
+                result.append(intervals_s[i])
+        return result          
+            
