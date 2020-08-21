@@ -1,0 +1,61 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+from collections import Counter
+# Complete the sherlockAndAnagrams function below.
+#Anangram checker
+def isAnagram(str1:str, str2:str)->bool:
+    if not str1 or not str2 or len(str1) != len(str2):
+        return False
+    str1_map = dict(Counter(str1))
+    str2_map = dict(Counter(str2))
+    
+    for key in str1_map:
+        if not str2_map.get(key) or str2_map[key] !=str1_map[key]:
+            return False
+    return True
+
+def sherlockAndAnagrams(s):
+    if not s or len(s) == 1:
+        return 0
+
+    # find all sub strings 
+    sub_length = 1
+    sub_strings_list = []
+    while sub_length < len(s):
+        temp = []
+        for i in range(len(s)):
+            s_slice = s[i:i+sub_length]
+            if len(s_slice) == sub_length:
+                temp.append(s_slice)
+        sub_strings_list.append(temp)                
+        sub_length += 1
+    print(sub_strings_list)
+    #find anagram for subStrings
+    anagram_counter = 0
+    for sub_strings in sub_strings_list:
+        for i in range(len(sub_strings)):
+            for j in range(i+1,len(sub_strings)):
+                # print(sub_strings[i],sub_strings[j])
+                if isAnagram(sub_strings[i],sub_strings[j]):
+                    anagram_counter += 1
+    return anagram_counter
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    q = int(input())
+
+    for q_itr in range(q):
+        s = input()
+
+        result = sherlockAndAnagrams(s)
+
+        fptr.write(str(result) + '\n')
+
+    fptr.close()
