@@ -1,0 +1,18 @@
+from collections import Counter
+
+def isAnagram(str1:str, str2:str)->bool:
+    if not str1 or not str2 or len(str1) != len(str2):
+        return False
+    str1_map = dict(Counter(str1))
+    str2_map = dict(Counter(str2))
+    
+    for key in str1_map:
+        if not str2_map.get(key) or str2_map[key] !=str1_map[key]:
+            return False
+    return True
+    
+print(isAnagram('listen','silent'))
+print(isAnagram('',''))
+print(isAnagram('from','fram'))
+print(isAnagram('mom','mom'))
+print(isAnagram('abcdf','abc'))
