@@ -1,0 +1,23 @@
+def findSubString(string :str):
+    if not string or len(string) == 1:
+        return []
+    sub_length = 1
+    sub_strings = []
+    while sub_length < len(string):
+        for i in range(len(string)):
+            s_slice = string[i:i+sub_length]
+            if len(s_slice) == sub_length:
+                sub_strings.append(s_slice)
+        sub_length += 1
+    return sub_strings
+
+
+print(findSubString('silent'))
+print(findSubString('mom'))
+print(findSubString('abcd'))
+print(findSubString(''))
+print(findSubString('s'))
+print(findSubString('sq'))
+
+
+            
