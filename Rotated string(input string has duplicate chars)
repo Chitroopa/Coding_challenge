@@ -1,0 +1,20 @@
+# 
+def isValidRotation(str1 : str, str2 : str) -> bool:
+    if not str1 or not str2 or len(str1) != len(str2):
+        return False
+    str1_list = [c for c in str1]
+    for i in range(len(str1_list)):
+        temp = str1_list.pop(0)
+        str1_list.append(temp)
+        temp_string = "".join(str1_list)
+        if str2 in temp_string:
+            return True
+    return False
+    
+print(isValidRotation('Roopa', 'paRoo'))
+print(isValidRotation('abc', 'acb'))
+print(isValidRotation('Roopa', 'paroo'))
+print(isValidRotation('Roopa', 'paRoooo'))
+print(isValidRotation('Roopa', 'Roopa'))
+print(isValidRotation('', ''))
+print(isValidRotation('Roopa', ''))
