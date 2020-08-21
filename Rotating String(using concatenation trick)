@@ -1,0 +1,19 @@
+# Rotating string validation using Concatenation 
+# is str1 in str2 + str2 ?
+# is Roopa in "oopaR" + "oopaR"
+
+def isValidRotation(str1 : str, str2 : str) -> bool:
+    if not str1 or not str2 or len(str1) != len(str2):
+        return False
+    str2_temp = str2 + str2
+    if str1 in str2_temp:
+        return True
+    return False
+    
+print(isValidRotation('Roopa', 'paRoo'))
+print(isValidRotation('abc', 'acb'))
+print(isValidRotation('Roopa', 'paroo'))
+print(isValidRotation('Roopa', 'paRoooo'))
+print(isValidRotation('Roopa', 'Roopa'))
+print(isValidRotation('', ''))
+print(isValidRotation('Roopa', ''))
