@@ -1,0 +1,24 @@
+#find the smallest substring match for the given query string 
+def smallestSubStringMatch(string:str, q_string:str):
+    if not string or not q_string:
+        return ""
+    q_s_len = len(q_string)
+    s_length = q_s_len
+    while s_length < len(string):
+        for i in range(len(string)):
+            s_slice = string[i:i+s_length]
+            if len(s_slice) >= q_s_len:
+                counter = 0
+                for c in q_string:
+                    if c in s_slice:
+                        counter +=1
+                if counter == q_s_len:
+                    return s_slice
+        s_length += 1 
+    return ""
+    
+print(smallestSubStringMatch('chitroopa', 'op'))
+print(smallestSubStringMatch('chitroopa', 'cp'))
+print(smallestSubStringMatch('', 'cp'))
+print(smallestSubStringMatch('mom', 'm'))
+print(smallestSubStringMatch('mom', 'note'))
