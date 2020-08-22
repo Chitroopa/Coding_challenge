@@ -1,0 +1,40 @@
+# How would you design a stack which, in addition to push and pop, also has a function
+# min which returns the minimum element? Push, pop and min should all operate in
+# O(1) time.
+
+
+class Mystack:
+    def __init__(self):
+        self.stack = []
+        self.min_stack = []
+    def push(self,value):
+        self.stack.append(value)
+        if not self.min_stack or value <= self.min_stack[-1]:
+            self.min_stack.append(value)
+        
+    def pop(self):
+        if not self.stack:
+            raise Exception("!!!!!!!!!! Stack is Empty !!!!!!!!!!!!!!")
+        if self.stack.pop() == self.min_stack[-1]:
+            self.min_stack.pop()
+    def minimum(self):
+        if not self.min_stack:
+            raise Exception("!!!!!!!!!! Stack is Empty !!!!!!!!!!!!!!")
+        return self.min_stack[-1] 
+    
+s = Mystack()
+# s.pop()
+# s.minimum()
+s.push(5)
+s.push(4)
+s.push(1)
+s.push(2)
+s.push(1)
+s.push(3)
+print(s.minimum())
+s.pop()
+s.pop()
+print(s.minimum())
+s.pop()
+s.pop()
+print(s.minimum())
