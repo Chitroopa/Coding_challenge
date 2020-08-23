@@ -1,0 +1,16 @@
+class Solution:
+    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        # dfs traversal
+        possible_paths = []
+        path = []
+        def dfs(node):
+            path.append(node)            
+            if node == len(graph)-1:
+                possible_paths.append(path.copy())
+            for i in range(len(graph[node])):
+                dfs(graph[node][i])
+            path.pop()
+        dfs(0)
+        return possible_paths             
+        
+        
