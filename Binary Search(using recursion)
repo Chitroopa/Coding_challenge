@@ -1,0 +1,19 @@
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        def binarySearch(start, end):
+            # Exit condition
+            if end < start or (start == end and nums[start] != target):
+                return -1
+            elif nums[start] == target:
+                return start
+            index = (start + end) // 2
+            
+            if nums[index] == target:
+                return index
+            elif nums[index] < target:
+                return binarySearch(index+1, end)
+            else:
+                return binarySearch(start, index-1)
+        
+        return binarySearch(0,len(nums)-1)          
+        
