@@ -1,0 +1,32 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the repeatedString function below.
+def repeatedString(s, n):
+    counter = 0
+    counter_2 = 0
+    counter = s.count('a')
+    modulo = n%len(s)
+    if modulo != 0:
+        counter_2 = s.count('a',0,modulo)
+        return ((n//len(s)) * counter) + counter_2
+    else:
+        return (n // len(s)) * counter
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    n = int(input())
+
+    result = repeatedString(s, n)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
