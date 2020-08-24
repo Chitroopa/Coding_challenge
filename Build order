@@ -1,0 +1,32 @@
+# Build Order: You are given a list of projects and a list of dependencies (which is a list of pairs of
+# projects, where the second project is dependent on the first project). All of a project's dependencies
+# must be built before the project is. Find a build order that will allow the projects to be built. If there
+# is no valid build order, return an error.
+# EXAMPLE
+# Input:
+# projects: a, b, c, d, e, f
+# dependencies: (a, d), (f, b), (b, d), (f, a), (d, c)
+# Output: f, e, a, b, d, c
+def buildOrder(projects, dependencies):
+    visited = []
+    result = []
+    project_map = {key:[] for key in projects}
+    for project,dependent in dependencies:
+        project_map[dependent].append(project)
+    # print(project_map)
+    
+    def dfs(project):
+        for dependent in project_map[project]:
+            if dependent not in visited:
+                visited.append(dependent)
+                dfs(dependent)
+        result.append(project)
+
+    for key in project_map:
+        if key not in visited:
+            visited.append(key)
+            dfs(key)
+    return result
+#test cases
+print(buildOrder(['a', 'b', 'c', 'd', 'e', 'f'],[('a', 'd'), ('f', 'b'), ('b', 'd'), ('f', 'a'), ('d', 'c')]))
+print(buildOrder(['a', 'b', 'c', 'd', 'e', 'f'],[('c','a'),('d','a'),('d','b'),('e','b'),('f','c'),('e','f')]))
