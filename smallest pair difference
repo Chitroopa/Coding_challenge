@@ -1,0 +1,38 @@
+# Given two arrays of integers, compute the pair of values (one value in each
+# array) with the smallest (non-negative) difference. Return the difference.
+# Input: {1, 3, 15, 11, 2}, {23, 127, 235, 19, 8}
+# Output: 3. That is, the pair (11 , 8).
+
+def smallestPairDiff(arr1,arr2) -> int:
+    # Input validation
+    if not arr1 or not arr2:
+        return 0
+        
+    # sorting
+    arr1.sort()
+    arr2.sort()
+    
+    # intialization
+    a1_p = 0
+    a2_p = 0
+    min_val = float('inf')
+    
+    while a1_p < len(arr1) and a2_p < len(arr2):
+        diff = abs(arr1[a1_p] - arr2[a2_p]) 
+        if  diff < min_val:
+            min_val = diff
+        if arr1[a1_p] < arr2[a2_p]:
+            a1_p += 1
+        else: a2_p += 1 
+        
+    return min_val
+ 
+#test cases
+print(smallestPairDiff([1, 3, 15, 11, 2],[23, 127, 235, 19, 8]))
+print(smallestPairDiff([10,2,15,13],[13,5,7,8]))
+print(smallestPairDiff([10,2,15,13],[]))
+print(smallestPairDiff([10,2],[0]))
+print(smallestPairDiff([],[13,5,7,8]))
+print(smallestPairDiff([199,2,15,13],[200,5,7,8]))
+
+    
