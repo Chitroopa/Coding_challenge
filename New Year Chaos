@@ -1,0 +1,43 @@
+#!/bin/python
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the minimumBribes function below.
+def minimumBribes(q):
+    # check input for Too chaotic
+    for i in range(len(q)):
+        if q[i] > i+3:
+            # print('Too chaotic')
+            return 'Too chaotic'
+    i = len(q)-1
+    swaps = 0
+    while(i>=2):
+        expected = i+1
+        if q[i-1] == expected:
+            q[i-1],q[i] = q[i-1],q[i]
+            swaps += 1
+        elif q[i-2] == expected:
+            q[i-2],q[i-1] = q[i-1],q[i-2]
+            q[i-1],q[i] = q[i-1],q[i]
+            swaps += 2
+        i -= 1
+    if q[0] != 1:
+        swaps += 1
+    return swaps
+
+
+
+
+if __name__ == '__main__':
+    t = int(raw_input())
+
+    for t_itr in xrange(t):
+        n = int(raw_input())
+
+        q = map(int, raw_input().rstrip().split())
+
+        print(minimumBribes(q))
