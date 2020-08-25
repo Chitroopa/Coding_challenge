@@ -9,24 +9,19 @@ def wordMatching(numbers,valid_words):
     possible_words =[]
     matching_words = []
     
-    # dfs and backtracking to find all possible words    
-    def dfs(level,words):
+    def dfs(level,word):
         if level > len(numbers)-1:
-            if len(word) == len(numbers):
-                temp = "".join(word)
-                possible_words.append(temp)
+            temp = "".join(word)
+            possible_words.append(temp)
             return
         char_map = nums_map[numbers[level]]
         for c in char_map:
             word.append(c)
-            # print("dfs call", level+1 ,word)
             dfs(level+1, word)
             word.pop()
     word = []        
-    for level in range(len(numbers)):
-        dfs(level, word)
-     
-    # Check for valid words in possible words generated 
+    dfs(0, word)
+
     for w in valid_words:
         if w in possible_words:
             matching_words.append(w)
