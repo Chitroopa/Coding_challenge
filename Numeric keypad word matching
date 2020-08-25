@@ -1,0 +1,38 @@
+# on the old cell phones, user typed on a numeric keypad and the phone would provide a list of words that mached these numbers
+# Each digit mapped to a set of 0-4 letters. Implement a algorithm to return a list of matching words, given a sequence of
+# digits. you are provided with a list of valid words(provided in whatever datastucture you like). the mapping is like below.
+# nums_map = {2:['a','b','c'],3:['d','e','f']},4:['g','h','i'],5:['j','k','l'],6:['m','n','o'],7:['p','q','r','s'],8:['t','u','v'],
+# 9:['w','x','y','z']}
+
+def wordMatching(numbers,valid_words):
+    nums_map = {2:['a','b','c'],3:['d','e','f'],4:['g','h','i'],5:['j','k','l'],6:['m','n','o'],7:['p','q','r','s'],8:['t','u','v'],9:['w','x','y','z']}
+    possible_words =[]
+    matching_words = []
+    
+    # dfs and backtracking to find all possible words    
+    def dfs(level,words):
+        if level > len(numbers)-1:
+            if len(word) == len(numbers):
+                temp = "".join(word)
+                possible_words.append(temp)
+            return
+        char_map = nums_map[numbers[level]]
+        for c in char_map:
+            word.append(c)
+            # print("dfs call", level+1 ,word)
+            dfs(level+1, word)
+            word.pop()
+    word = []        
+    for level in range(len(numbers)):
+        dfs(level, word)
+     
+    # Check for valid words in possible words generated 
+    for w in valid_words:
+        if w in possible_words:
+            matching_words.append(w)
+    return matching_words
+    
+# test cases
+print(wordMatching([2,7,3,2],['tree','used','area','tube']))
+print(wordMatching([3,4,5,6],['tree','used','area','tube']))
+print(wordMatching([3,4,4],['ape','egg','dig']))
