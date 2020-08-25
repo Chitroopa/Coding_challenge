@@ -1,0 +1,46 @@
+# Pond Sizes: You have an integer matrix representing a plot of land, where the value at that location represents the height above sea level. A value of zero indicates water. A pond is a region of
+# water connected vertically, horizontally, or diagonally. The size of the pond is the total number of
+# connected water cells. Write a method to compute the sizes of all ponds in the matrix.
+# EXAMPLE
+# Input:
+# 0 2 1 0
+# 0 1 0 1
+# 1 1 0 1
+# 0 1 0 1
+# Output: 2, 4, 1 (in any order)
+
+def pondSize(pond) -> int:
+    if not pond or len(pond) < 1 :
+        return []
+    directions = {(0,-1),(0,1),(-1,0),(1,0),(-1,-1),(1,1),(-1,1),(1,-1)}
+    stack = []
+    pond_size = []
+    size = 0
+    for i in range(len(pond)):
+        for j in range(len(pond[0])):
+            if pond[i][j] == 0:
+                if size > 0:
+                    pond_size.append(size)
+                    size = 0
+                stack.append((i,j))
+                pond[i][j] = 3
+                size += 1
+            while stack:
+                c_i, c_j = stack.pop()
+                for di,dj in directions:
+                    n_i = c_i + di
+                    n_j = c_j + dj
+                    
+                    if 0 <= n_i < len(pond) and 0 <= n_j <len(pond[0]) and pond[n_i][n_j] == 0:
+                        stack.append((n_i,n_j))
+                        pond[n_i][n_j] = 3
+                        size += 1 
+    if size > 0:
+        pond_size.append(size)
+    return pond_size
+    
+# test cases
+print(pondSize([[0,2,1,0],[0,1,0,1],[1,1,0,1],[0,1,0,1]]))
+print(pondSize([[2,0,0,1],[1,0,0,1],[2,0,0,1],[0,1,0,1]]))
+print(pondSize([]))  
+    
