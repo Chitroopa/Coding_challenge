@@ -1,0 +1,15 @@
+from collections import Counter
+def find_pairs_with_given_difference(arr, k):
+  # Input validation
+  if not arr or len(arr) < 2:
+    return []
+  # Intialization
+  result = []  
+  arr_map = dict(Counter(arr))
+  
+  for y in range(len(arr)):
+    x = k + arr[y]
+    if arr_map.get(x):
+      result.append([x,arr[y]])
+      del arr_map[x]
+  return result 
