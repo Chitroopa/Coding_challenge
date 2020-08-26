@@ -1,0 +1,69 @@
+"""
+Find the longest increasing subsequence of a given array of integers, A.
+
+In other words, find a subsequence of array in which the subsequence’s elements are in strictly increasing order, and in which the subsequence is as long as possible.
+This subsequence is not necessarily contiguous, or unique.
+In this case, we only care about the length of the longest increasing subsequence.
+Input format
+The first and the only argument is an integer array A.
+Output Format:
+
+Return an integer representing the length of the longest increasing subsequence.
+Constraints:
+1 <= length(A) <= 2500
+1 <= A[i] <= 2000
+Example :
+Input 1:
+    A = [1, 2, 1, 5]
+Output 1:
+    3
+Explanation 1:
+    The sequence : [1, 2, 5]
+
+Input 2:
+    A = [0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+    
+Output 2:
+    6
+Explanation 2:
+    The sequence : [0, 2, 6, 9, 13, 15] or [0, 4, 6, 9, 11, 15] or [0, 4, 6, 9, 13, 15]
+"""
+
+"""
+Intial thoughts
+
+- have an lookup list - len(input)- to track the length
+- find the smallest elements before the current element 
+- lookup[current_element] = 1 + the maximum value of before smallest elements from the lookup list 
+- ans = max(lookup)
+
+"""
+
+def find_longest_increasing_subsequence(A):
+    length = len(A)
+    if not A:
+        return 0 
+    lookup_length = [0]*length
+    lookup_length[0] = 1
+    
+    for i in range(1,len(A)):
+        temp = []
+        for j in range (0,i):
+            if A[j] < A[i]:
+                temp.append(lookup_length[j])
+        if temp:
+            lookup_length[i] = max(temp) + 1
+        else: lookup_length[i] = 1
+    print(lookup_length)
+    return max(lookup_length)        
+    
+#test case
+
+print(find_longest_increasing_subsequence([1, 2, 1, 5]))
+print(find_longest_increasing_subsequence([0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]))
+print(find_longest_increasing_subsequence([ 69, 54, 19, 51, 16, 54, 64, 89, 72, 40, 31, 43, 1, 11, 82, 65, 75, 67, 25, 98, 31, 77, 55, 88, 85, 76, 35, 101, 44, 74, 29, 94, 72, 39, 20, 24, 23, 66, 16, 95, 5, 17, 54, 89, 93, 10, 7, 88, 68, 10, 11, 22, 25, 50, 18, 59, 79, 87, 7, 49, 26, 96, 27, 19, 67, 35, 50, 10, 6, 48, 38, 28, 66, 94, 60, 27, 76, 4, 43, 66, 14, 8, 78, 72, 21, 56, 34, 90, 89 ]
+))
+print(find_longest_increasing_subsequence([5,1]))
+print(find_longest_increasing_subsequence([1]))
+print(find_longest_increasing_subsequence([10,1]))
+print(find_longest_increasing_subsequence([]))
