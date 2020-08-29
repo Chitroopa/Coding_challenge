@@ -1,0 +1,45 @@
+'''
+1. find_array_pair
+2. find_array_triplet using find_array_pair
+3. find_array_quadruplet using find_array_triplet
+
+x + y = s
+x = s-y 
+
+x + y + z = s
+
+x + y = s - z
+
+
+'''
+
+def find_array_pair(arr, i, s):
+  min_p = i
+  max_p = len(arr)-1
+  while min_p < max_p:
+    curr_s = arr[min_p] + arr[max_p]
+    if  curr_s == s:
+        return [arr[min_p],arr[max_p]]
+    if curr_s < s:
+        min_p += 1
+    else:
+      max_p -= 1
+  return []
+
+
+def find_array_triplet(arr, i, s):
+  for k in range(i, len(arr)):
+    pair = find_array_pair(arr, k+1, s - arr[k])
+    if (len(pair) == 2):
+      return [arr[k], pair[0], pair[1]]
+  return [] 
+  
+def find_array_quadruplet(arr, s):
+  arr.sort()
+  for i in range(len(arr)):
+    triplet = find_array_triplet(arr, i+1, s - arr[i])
+    if (len(triplet) == 3):
+      return [arr[i], triplet[0], triplet[1], triplet[2]]
+  
+  return []
+
