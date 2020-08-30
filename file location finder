@@ -1,0 +1,54 @@
+# # # # ()
+
+
+# 
+# Your previous Plain Text content is preserved below:
+# 
+# 
+# dir1
+# -filechitroo.ext
+# dir2
+# -subdir1
+# --file1.ext
+# --subsubdir1
+# ---file4.ext
+# -subdir2
+# --subsubdir2
+# ---file2.ext
+# ---subsubsubdir2
+# ----file3.ext
+# 
+# find(List<String>, "file2.ext") -> "/dir2/subdir2/subsubdir2/file2.ext"
+
+
+def countLevel(ele):
+    return ele.count("-")
+
+def getElementName(ele):
+    return ele.replace("-", "")
+
+def find(location, file_name):
+    stack = []
+    for ele in location:
+        if getElementName(ele) == file_name:
+            stack.append([countLevel(ele),getElementName(ele)])
+            break
+        level = countLevel(ele)
+        element = getElementName(ele)
+        
+        if stack and stack[-1][0] < level:
+            stack.append([level,element])
+        else: 
+            while stack and stack[-1][0] >= level:
+                stack.pop()
+            stack.append([level,element])
+    result = []
+    while stack:
+        result.append(stack.pop()[1])
+    print(result)
+    output = "/".join(result[::-1])
+    return "/" + output
+
+input = ["dir1", "-filechitroo.ext", "dir2", "-subdir1", "--file1.ext", "--subsubdir1", "---file4.ext", "-subdir2", "--subsubdir2", "---file2.ext", "---subsubsubdir2", "----file3.ext"]
+
+print(find(input, "file2.ext"))
