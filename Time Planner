@@ -1,0 +1,38 @@
+# startime < endtime
+# the pairs are in sorted order 
+# 
+def meeting_planner(slotsA, slotsB, dur):
+  #----s---------e
+  #----10--------50
+  #-0------15--s----
+  #-s-----e-------
+  t1 = 0
+  t2 = 0
+  # min, max 
+  while t1 < len(slotsA) and t2 < len(slotsB):
+    start1, end1 = slotsA[t1]
+    start2, end2 = slotsB[t2]
+    
+    dif =  min(end1,end2) - max(start1,start2)
+    # dif = 10 - 15
+    # 5 
+    if dif >= dur:
+      return [max(start1,start2),max(start1,start2)+dur]
+    
+    if end1 < end2:
+      t1 += 1
+    else: t2+=1
+    
+  return []
+
+#print(meeting_planner([[10, 50], [60, 120], [140, 210]], [[0, 15], [60, 70]], 8))
+#print(meeting_planner([[10, 50], [60, 120], [140, 210]], [[0, 15], [60, 70]], 12))
+print(meeting_planner([[6,12]], [[2,11]], 5))
+
+ 
+      
+    
+  
+  
+  
+      
