@@ -1,0 +1,57 @@
+#!/bin/python3
+
+import os
+import sys
+
+#
+# Complete the runningMedian function below.
+#
+def findMedian(numbers):
+    count = len(numbers)
+    if count % 2 == 0:
+        return float((numbers[(count//2) -1] + numbers[count//2]) / 2)
+    else:
+        return float(numbers[(count//2)])
+
+def runningMedian(inputNumbers):
+    #
+    # Write your code here.
+    #
+    numbers =[]
+    median = []
+    
+    for num in inputNumbers:
+        if not numbers:
+            numbers.append(num)
+            median.append(findMedian(numbers))
+            continue
+        # sorting
+        i = 0
+        inserted = False
+        while i < len(numbers):
+            if num < numbers[i]:
+                numbers.insert(i,num)
+                inserted = True
+                break
+            i += 1
+        if not inserted:
+            numbers.append(num)
+
+        median.append(findMedian(numbers))
+    return median
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    a_count = int(input())
+
+    a = []
+
+    for _ in range(a_count):
+        a_item = int(input())
+        a.append(a_item)
+    result = runningMedian(a)
+
+    fptr.write('\n'.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
