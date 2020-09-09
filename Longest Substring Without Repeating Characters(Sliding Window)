@@ -1,0 +1,36 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        # update map
+        def updateMap(index, cmd):
+            if cmd =='Add':
+                subStringMap[s[index]] = subStringMap.get(s[index],0) + 1
+            elif cmd=='Remove':
+                if subStringMap.get(s[index]) and subStringMap[s[index]] > 1:
+                    subStringMap[s[index]] = subStringMap[s[index]] -1
+                else:
+                    del subStringMap[s[index]]
+            return 
+        
+        # driver module
+        if not s:
+            return 0
+        subStringMap = {}
+        end, start = 0,0
+        maxLength = float('-inf')
+        currLength = 0
+        
+        while start < len(s) and end < len(s):
+            updateMap(end, 'Add')           
+           
+            # window adjustment if there are duplicate chars
+            if len(subStringMap) < (end- start) + 1:
+                while len(subStringMap) < (end - start) + 1:
+                    updateMap(start, 'Remove')
+                    start += 1                   
+                    
+            if len(subStringMap) == (end - start) + 1:
+                currLength = len(subStringMap)
+                end += 1
+            maxLength = max(maxLength, currLength)
+            
+        return maxLength
