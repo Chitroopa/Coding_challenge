@@ -1,0 +1,11 @@
+from collections import Counter
+import heapq
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        nums_freq = dict(Counter(nums))
+        heap = []
+        for num in nums_freq:            
+            heappush(heap,(-nums_freq[num], num))
+        return [heappop(heap)[1] for i in range(k)]          
+        
+        
