@@ -1,0 +1,20 @@
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        # dfs and backtracking
+        def dfs(temp, numbers):
+            if len(numbers) == 0:
+                result.append(temp.copy())
+                return
+            for num in numbers:
+                temp.append(num)
+                
+                next_numbers = numbers.copy()
+                next_numbers.remove(num)                
+                dfs(temp,next_numbers)
+                temp.pop() #backtracking             
+        
+        if len(nums) < 2:
+            return [nums]
+        result = []
+        dfs([],nums)
+        return result
