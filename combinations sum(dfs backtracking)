@@ -1,0 +1,19 @@
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        def dfsBacktracking(target,index):
+            if target == 0:
+                res.append(curr[:])
+                return
+            for i in range(index,len(candidates)):
+                cand = candidates[i]
+                if cand > target:
+                    return
+                curr.append(cand)
+                dfsBacktracking(target - cand, i)
+                curr.pop()
+        res = []
+        curr = []
+        candidates.sort()
+        dfsBacktracking(target,0)
+        return res
+        
