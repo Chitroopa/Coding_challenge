@@ -2,7 +2,10 @@
 # cheat sheet
 #----------------------------------------------------------------------------------------------
 
-> create m * n matrix  matrix = [[0]*n for _ in range(m)]
+> create m * n matrix  
+    matrix = [[0]*n for _ in range(m)]
+> sort in decending order 
+    listname.sort(reverse = True)
 
 
 
