@@ -1,0 +1,38 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def rotateRight(self, head: ListNode, k: int) -> ListNode:
+        if k < 0 or not head:
+            return head        
+        # find length
+        listTemp = head
+        length = 0
+        while listTemp:
+            length += 1
+            listTemp = listTemp.next
+        
+        rotateCount = k % length
+        if rotateCount == 0:
+            return head
+            
+        newHead = head
+        prev = None
+        for _ in range(length - (rotateCount)):
+            prev = newHead
+            newHead = newHead.next
+            
+        prev.next = None
+        listTemp = newHead
+        while listTemp.next:
+            listTemp = listTemp.next     
+        listTemp.next = head
+        return newHead
+               
+           
+                
+            
+            
+            
