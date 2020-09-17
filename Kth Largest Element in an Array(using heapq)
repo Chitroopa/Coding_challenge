@@ -1,0 +1,14 @@
+import heapq
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        if not nums:
+            return -1
+        heap = nums[:k]
+        heapify(heap)
+        
+        for i in range(k, len(nums)):
+             if heap[0] <= nums[i]:
+                heappop(heap)
+                heappush(heap, nums[i])
+                
+        return heappop(heap)
