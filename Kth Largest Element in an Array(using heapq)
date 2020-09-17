@@ -5,7 +5,7 @@ class Solution:
             return -1
         heap = nums[:k]
         heapify(heap)
-        
+        # min heap
         for i in range(k, len(nums)):
              if heap[0] <= nums[i]:
                 heappop(heap)
