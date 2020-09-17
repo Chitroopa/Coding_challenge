@@ -1,12 +1,23 @@
 #---------------------------------------------------------------------------------------------
-# cheat sheet
+# python cheat sheet
 #----------------------------------------------------------------------------------------------
 
 > create m * n matrix  
     matrix = [[0]*n for _ in range(m)]
 > sort in decending order 
     listname.sort(reverse = True)
-
+> heap
+    #heapq defult is min heap
+    import heapq
+    heap = []
+    heapify(heap) # transforms list X into heap 
+    heappush(heap, item)
+    heappop(heap) 
+    heap[0] # lookup smallest element 
+    heappushpop(heap, item)
+    
+    # max heap hack
+    heappush(heap, -item) # change item value to negative
 
 
 #----------------------------------------------------------------------------------------------
