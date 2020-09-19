@@ -4,6 +4,8 @@
 
 > create m * n matrix  
     matrix = [[0]*n for _ in range(m)]
+> access last element in matrix
+    matrix[-1][-1]
 > sort in decending order 
     listname.sort(reverse = True)
 > heap
