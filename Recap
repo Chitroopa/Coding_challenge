@@ -20,6 +20,18 @@
     
     # max heap hack
     heappush(heap, -item) # change item value to negative
+    
+> defult dictonary
+    from collections import defaultdict
+    new_map = defaultdict(list) # default value is list => { key:[]}
+    new_map = defaultdict(int) # default value as integer
+    new_map = defaultdict(set) # default value as set 
+
+> counter 
+    from collections import Counter
+    a = [1,1,1,1,1,1,2,2,3,3]
+    new_map = dict(Counter(a))
+    
 
 
 #----------------------------------------------------------------------------------------------
