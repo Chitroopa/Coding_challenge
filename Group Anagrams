@@ -1,0 +1,15 @@
+from collections import defaultdict
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+
+        anagram_map = defaultdict(list)
+
+        for word in strs:
+            word_sort = "".join(sorted(word))
+            if word_sort in anagram_map:
+                anagram_map[word_sort].append(word)
+            else:
+                anagram_map[word_sort] = [word]                
+
+        return [anagram_map[key] for key in anagram_map]
