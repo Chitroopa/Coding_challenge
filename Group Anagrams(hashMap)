@@ -7,9 +7,6 @@ class Solution:
 
         for word in strs:
             word_sort = "".join(sorted(word))
-            if word_sort in anagram_map:
-                anagram_map[word_sort].append(word)
-            else:
-                anagram_map[word_sort] = [word]                
-
+            anagram_map[word_sort].append(word)
+            
         return [anagram_map[key] for key in anagram_map]
