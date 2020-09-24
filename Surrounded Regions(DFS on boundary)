@@ -1,0 +1,37 @@
+from itertools import chain, repeat
+class Solution:
+    def solve(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """   
+        if len(board) < 1:
+            return
+        directions = ((1,0),(-1,0),(0,1),(0,-1))
+        visited = []
+        stack = []
+        rows, cols = len(board), len(board[0])
+        #define boundary coordinates for the board 
+        boundary = set(chain(zip(repeat(0), range(cols)), #top 
+                        zip(repeat(rows-1), range(cols)), #bottom
+                        zip(range(rows),repeat(0)), #left
+                        zip(range(rows), repeat(cols-1)))) #right 
+        for i,j in boundary:
+            if 0<=i<rows and 0<=j<cols and (i,j) not in visited and board[i][j] == "O":
+                visited.append((i,j))
+                stack.append((i,j))
+                
+                #dfs
+                while stack:
+                    cur_i, cur_j = stack.pop()
+                    for di, dj in directions:
+                        new_i = cur_i + di
+                        new_j = cur_j + dj
+                        if 0<= new_i <rows and 0<= new_j <cols and (new_i, new_j) not in visited and board[new_i][new_j] == "O":
+                            visited.append((new_i,new_j))
+                            stack.append((new_i,new_j))
+        # change all 'O' to 'X' if not visited in dfs
+        for i in range(rows):
+            for j in range(cols):
+                if (i,j) not in visited and board[i][j] =="O":
+                    board[i][j] = "X"
+        
