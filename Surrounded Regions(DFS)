@@ -1,0 +1,45 @@
+class Solution:
+    def solve(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        directions = ((1,0),(-1,0),(0,1),(0,-1))
+        visited = []
+        stack = []
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j] == "O":
+                    visited.append([])
+                    visited[-1].append((i,j))
+                    stack.append((i,j))
+                    board[i][j] = "X"
+                    
+                    # dfs
+                    while stack:
+                        cur_i, cur_j = stack.pop()
+
+                        for di, dj in directions:
+                            new_i = cur_i + di
+                            new_j = cur_j + dj
+                            if 0<= new_i <len(board) and 0<= new_j<len(board[0]) and board[new_i][new_j] == "O":
+                                visited[-1].append((new_i,new_j))
+                                stack.append((new_i,new_j))
+                                board[new_i][new_j] = "X"
+        #print(visited)
+        #print(board)
+        
+        inborder = []
+        for region in visited:
+            for cell in region: 
+                i, j = cell
+                #print(i,j)
+                if not 0<i<(len(board)-1) or not 0<j<(len(board[0])-1):
+                    inborder.append(region)
+                    break
+                    
+        for region in inborder:
+            for cell in region:
+                i, j = cell
+                board[i][j] = "O"
+                
+        
