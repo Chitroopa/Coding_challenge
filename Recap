@@ -4,10 +4,19 @@
 
 > create m * n matrix  
     matrix = [[0]*n for _ in range(m)]
+    
 > access last element in matrix
     matrix[-1][-1]
+    
+> move vertically and horizontally in 2d matrix
+    [(-1,0),(1,0),(0,-1),(0,1)] #[up, down, left, right]
+    
+> move diagonally in 2d matrix
+    [(-1,-1),(1,1),(-1,1),(1,-1)]
+    
 > sort in decending order 
     listname.sort(reverse = True)
+    
 > heap
     #heapq defult is min heap
     import heapq
@@ -31,7 +40,18 @@
     from collections import Counter
     a = [1,1,1,1,1,1,2,2,3,3]
     new_map = dict(Counter(a))
+
+> itertools 
+    # eg: to get boundary coordinates for board
     
+    from itertools import chain, repeat
+    boundary = set(chain(zip(repeat(0), range(cols)), #top 
+                        zip(repeat(rows-1), range(cols)), #bottom
+                        zip(range(rows),repeat(0)), #left
+                        zip(range(rows), repeat(cols-1)))) #right 
+   # repeat(10, 3) --> 10 10 10 #A common use for repeat is to supply a stream of constant values to imap or zip
+   # chain('ABC', 'DEF') --> A B C D E F
+   # zip((1,2,3),(4,5,6)) ---> (1, 4), (2, 5), (3, 6) Iterator objects that will be joined together   
 
 
 #----------------------------------------------------------------------------------------------
