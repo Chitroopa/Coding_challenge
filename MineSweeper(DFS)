@@ -1,0 +1,38 @@
+class Solution:
+    def updateBoard(self, board: List[List[str]], click: List[int]) -> List[List[str]]:
+        def findNeighbours(cur_i,cur_j):
+            directions = ((-1,0),(1,0),(0,-1),(0,1),(-1,-1),(1,1),(-1,1),(1,-1))
+            result = []
+            for di,dj in directions:
+                i = cur_i + di
+                j = cur_j + dj
+                if 0<=i<row and 0<=j<col:
+                    result.append((i,j))
+            return result            
+        # driver module    
+        r , c = click
+        if board[r][c] == 'M':
+            board[r][c] = 'X'
+            return board        
+        stack = []
+        stack.append((r,c))        
+        row, col = len(board), len(board[0])
+        #dfs
+        while stack:
+            cur_i,cur_j = stack.pop()
+            neighbours = findNeighbours(cur_i,cur_j)
+            mineCounter = 0
+            for i,j in neighbours:
+                if board[i][j] == 'M':
+                    mineCounter += 1
+            if board[cur_i][cur_j] == 'E':
+                if mineCounter == 0:
+                    board[cur_i][cur_j] = 'B'
+                    for i,j in neighbours:
+                        if board[i][j] == 'E':
+                            stack.append((i,j))
+                else: board[cur_i][cur_j] = str(mineCounter)
+            
+        return board                
+            
+            
