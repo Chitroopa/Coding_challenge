@@ -1,0 +1,11 @@
+from collections import Counter
+class Solution:
+    def numJewelsInStones(self, J: str, S: str) -> int:
+        Smap = dict(Counter(S))
+        result = 0
+        for j in J:
+            if j in Smap:
+                result += Smap[j]
+        return result
+            
+            
