@@ -73,5 +73,19 @@ print(findsubstring('chitroopa'))
 
 
 #-------------------------------------------------------------------------------------------------
-#
+# Backtracking 
 #------------------------------------------------------------------------------------------------
+eg: perumtation # A “combination lock” should really be called a “permutation lock”. The order you put in the numbers of lock matters
+def permutation(chars, strSoFar):
+  if not chars: return print(strSoFar)
+  for c in chars:
+    currChar = c
+    chars.remove(c)
+    permutation(chars, strSoFar + currChar)
+    chars.add(c)
+
+chars = {'a', 'b', 'c', 'd'}
+strSoFar = ""
+permutation(chars, strSoFar)
+
+----------------------------------------<<End>>---------------------------------------------------------
