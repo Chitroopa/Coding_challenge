@@ -40,6 +40,28 @@
     from collections import Counter
     a = [1,1,1,1,1,1,2,2,3,3]
     new_map = dict(Counter(a))
+    
+> OrderedDict() - remembers the order of insertion - used in LRU Cache implementation
+    from collections import OrderedDict
+    new_OD = OrderedDict()
+    new_OD['a'] = 2
+    new_OD['b'] = 3
+    new_OD['c'] = 4
+    print(new_OD)           # prints OrderedDict([('a', 2), ('b', 3), ('c', 4)])
+
+    new_OD.move_to_end('a') # moves element to right end(default)
+    print(new_OD)           # prints OrderedDict([('b', 3), ('c', 4), ('a', 2)])
+
+    new_OD.move_to_end('b', last=False) # moves element to Left end
+    print(new_OD)                       # prints OrderedDict([('b', 3), ('c', 4), ('a', 2)])
+
+    new_OD.popitem(last= True)  # LIFO
+    print(new_OD)               # prints OrderedDict([('b', 3), ('c', 4)])
+
+    new_OD.popitem(last= False) # FIFO
+    print(new_OD)               #prints OrderedDict([('c', 4)])
+        
+    
 
 > itertools 
     # eg: to get boundary coordinates for board
