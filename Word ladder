@@ -1,0 +1,39 @@
+from collections import defaultdict
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        all_comb_map = defaultdict(list)
+        length = len(beginWord)
+        for word in wordList:
+            for i in range(length):
+                all_comb_map[word[:i]+ '*' + word[i+1:]].append(word)
+        # print(all_comb_map)
+        
+        queue =[]
+        visited = []
+        level = 0
+        queue.append(beginWord)
+        visited.append(beginWord)
+        queue.append('#')
+        
+        while(len(queue) > 1):
+            curr_word = queue.pop(0)
+            # print(curr_word)
+            if curr_word == "#":
+                level += 1
+                queue.append('#')
+                continue
+            if curr_word == endWord:
+                 return level+1
+            for i in range(length):
+                inter_word = curr_word[:i]+ '*'+curr_word[i+1:]
+                # print("inter_word",inter_word)
+
+                if inter_word in all_comb_map:
+                    neighbours = all_comb_map[inter_word]
+                    for neighbour in neighbours:
+                        if neighbour not in visited:
+                            queue.append(neighbour)
+                            visited.append(neighbour)                    
+                    neighbours = []
+        return 0                                          
+                    
