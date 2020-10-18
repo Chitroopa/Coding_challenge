@@ -53,6 +53,46 @@
    # chain('ABC', 'DEF') --> A B C D E F
    # zip((1,2,3),(4,5,6)) ---> (1, 4), (2, 5), (3, 6) Iterator objects that will be joined together   
 
+#---------------------------------------------<<End>>-------------------------------------------
+
+#----------------------------------------------------------------------------------------------
+# DS and Algorithm cheat sheet
+#----------------------------------------------------------------------------------------------
+
+> using collections (hashMap, hashSet, Stack and queue)
+    - find a pair/group of numbers satisfying a given target condition. eg: find two numbers in a array that sums up to the given target number.
+
+> Sorting:
+    - Rearrange the given array elements in a specified way to obtain the output
+
+> Simple array traversal:
+    - Find a single value or a transformation of the given array in some way.
+
+> Two pointers:
+    - search set of elements with a given condition. Eg: container with most water
+    - find triplets or a sub array with the given condition
+> Fast and slow pointers:
+    - find the position of an element, or the length of the array, where the array hass cycle/loop.
+> Two heaps:
+    - find the smallest/largest/medium element of an array
+> Subsets:
+    - permuntation and combination of a given set
+> Top K elements:
+    - find the top k smallest/largest/frequent elements of an array
+> sliding window:
+    -find the short/long subset of a given array
+> Merge Intervals:
+    - find overlapping intervals/mutually exclusive intervals/ merge intervals given the input is a list/array of intervals [t1.t2]
+> Backtracking:
+    - find permuntaions or combinations of the array elements
+    
+> DP:
+    -
+
+
+
+
+
 
 #----------------------------------------------------------------------------------------------
 # find all substrings
