@@ -16,6 +16,10 @@
     
 > sort in decending order 
     listname.sort(reverse = True)
+
+> Infinity 
+    a = float('inf') # postive infinity 
+    a = float('-inf') # negative infinity
     
 > heap
     #heapq defult is min heap
