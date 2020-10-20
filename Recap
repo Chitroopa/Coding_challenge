@@ -20,7 +20,14 @@
 > Infinity 
     a = float('inf') # postive infinity 
     a = float('-inf') # negative infinity
+
+> looping 
+    a = [1,2,3,4]
+    print([x for x in range(len(a)-1, -1, -1) ]) # reverse loop [3, 2, 1, 0]
+    print([x for x in range(len(a))]) # [0, 1, 2, 3]
     
+    # range([start], stop[, step])    
+        
 > heap
     #heapq defult is min heap
     import heapq
