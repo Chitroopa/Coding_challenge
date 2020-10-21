@@ -57,7 +57,7 @@
 > counter 
     from collections import Counter
     a = [1,1,1,1,1,1,2,2,3,3]
-    new_map = dict(Counter(a))
+    new_map = Counter(a)
     
 > OrderedDict() - remembers the order of insertion - used in LRU Cache implementation
     from collections import OrderedDict
