@@ -20,6 +20,13 @@
 > Infinity 
     a = float('inf') # postive infinity 
     a = float('-inf') # negative infinity
+> str.Zfill(width)
+    x = "1"
+    x.zfill(2) # x = "01"
+    
+    #The zfill() method pads string on the left with zeros to fill width.
+
+
 
 > looping 
     a = [1,2,3,4]
