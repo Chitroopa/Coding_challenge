@@ -1,0 +1,21 @@
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        numsMap = {2:['a','b','c'],3:['d','e','f'],4:['g','h','i'],5:['j','k','l'],6:['m','n','o'],7:['p','q','r','s'],8:['t','u','v'],9:['w','x','y','z']}
+        
+        def dfs(level, words):
+            if level > len(digits)-1:
+                result.append("".join(words))
+                return
+            charSet = numsMap[int(digits[level])]
+            for c in charSet:
+                words.append(c)
+                dfs(level+1, words[::])
+                words.pop() # backtracking
+        
+        if not digits:
+            return []
+        words, result = [], []
+        dfs(0,words)
+        
+        return result
+        
