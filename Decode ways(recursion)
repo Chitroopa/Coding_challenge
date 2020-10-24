@@ -1,0 +1,17 @@
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        def decode(n, s):
+            if n==0 or n==1:
+                return 1
+            count = 0
+            if s[n-1] > "0":
+                count += decode(n-1, s)
+            if s[n-2] == "1" or (s[n-2] == "2" and s[n-1] < "7"):
+                count += decode(n-2, s)
+            return count
+        if not s or s == "0":
+            return 0
+        return decode(len(s), s)
+            
+        
+        
