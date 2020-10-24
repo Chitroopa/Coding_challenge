@@ -1,0 +1,21 @@
+from test import testEqual
+def isPalRec(string, s, e):
+    if s == e:
+        return True
+    elif string[s] != string[e]:
+        return False
+    if s <= e:
+        return isPalRec(string, s+1, e-1)
+    return True
+    
+def isPal(s):
+    if s:
+        return isPalRec(s, 0, len(s)-1)
+    return False
+
+testEqual(isPal("x"),True)
+testEqual(isPal("radar"),True)
+testEqual(isPal("hello"),False)
+testEqual(isPal(""),False)
+testEqual(isPal("hannah"),True)
+testEqual(isPal("madamimadam"),True)
