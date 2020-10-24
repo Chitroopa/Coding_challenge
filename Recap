@@ -26,7 +26,8 @@
     
     #The zfill() method pads string on the left with zeros to fill width.
 
-
+> nonlocal variable #used in nested loops
+    nonlocal variable_name
 
 > looping 
     a = [1,2,3,4]
@@ -127,7 +128,8 @@
     - find permuntaions or combinations of the array elements
     
 > DP:
-    -
+    - memoization
+    - tabulation 
 
 
 
