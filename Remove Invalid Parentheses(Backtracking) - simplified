@@ -1,0 +1,27 @@
+class Solution:        
+    def removeInvalidParentheses(self, s: str) -> List[str]:
+        self.vaild_exps = set()
+        self.min_removed = float('inf')
+        
+        def removeInvalid(index, open_count, close_count, removed, exp):
+            if index == len(s):
+                if open_count == close_count:
+                    if removed < self.min_removed:
+                        self.min_removed = removed
+                        self.valid_exps = {exp}
+                    elif removed == self.min_removed:
+                        self.valid_exps.add(exp)
+                return 
+            else:
+                if s[index] != '(' and s[index] !=')':
+                    removeInvalid(index + 1, open_count, close_count, removed, exp + s[index])
+                else:
+                    removeInvalid(index +1, open_count, close_count, removed+1, exp)
+                    if s[index] == '(':
+                        removeInvalid(index+1, open_count+1, close_count, removed, exp + s[index])
+                    elif s[index] == ')' and close_count < open_count:
+                        removeInvalid(index+1, open_count, close_count+1, removed, exp + s[index])
+        
+        removeInvalid(0,0,0,0,"")
+        return list(self.valid_exps)
+        
