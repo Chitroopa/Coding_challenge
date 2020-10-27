@@ -1,0 +1,25 @@
+from collections import OrderedDict
+class Solution:
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        
+        def permutation(numbers,res):
+            if len(numbers) == 0:
+                key = ""                
+                for r in res:
+                    key = key + "_" + str(r)
+                if key not in result:
+                    result[key] = res.copy()
+                    
+                return
+            for num in numbers:
+                nextNumbers = numbers.copy()
+                nextNumbers.remove(num)
+                res.append(num)
+                permutation(nextNumbers, res)
+                res.pop()
+        res = []
+        result = OrderedDict()
+        nums.sort()
+        permutation(nums,res)
+        return result.values()
+        
