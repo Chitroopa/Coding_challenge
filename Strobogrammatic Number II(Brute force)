@@ -1,0 +1,33 @@
+class Solution:
+    def findStrobogrammatic(self, n: int) -> List[str]:
+        sbg_inversion_map = {"0":"0", "1":"1", "8":"8", "6":"9", "9":"6"}
+        def isStrobogrammatic(num_list):
+            invert_res = []
+            for num in num_list:
+                invert_res.append(sbg_inversion_map[num])
+            invert_num = "".join(invert_res[::-1])
+            number = "".join(num_list)
+            return number == invert_num
+        
+        def sbg_num_generator(index, res):
+            if index >= n:                
+                ans = res[::]                
+                if ans[0] != "0" and isStrobogrammatic(ans):                 
+                    result.append("".join(ans))                    
+                return
+            for num in sbg_list:
+                res.append(num)
+                sbg_num_generator(index+1, res)                
+                res.pop()
+            
+                
+        sbg_list = ["0","1","8","6","9"]
+        result = []                    
+        if n <= 0:
+            return [""]
+        if n == 1:
+            return sbg_list[:3]
+            
+        
+        sbg_num_generator(0,[])
+        return result
