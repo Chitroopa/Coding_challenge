@@ -1,0 +1,24 @@
+class Solution:
+    def findStrobogrammatic(self, n: int) -> List[str]:
+        
+        def sbg_recursion(n, N):
+            if n == 0:
+                return [""]
+            if n == 1:
+                return ["0","1","8"]
+            
+            inner = sbg_recursion(n-2, N)
+            result = []
+            for value in inner:
+                for combo in combinations:
+                    res = ""
+                    res = combo[0] + value + combo[1]
+                    if n == N and str(int(res)) != res: continue
+                    result.append(res)
+            return result 
+            
+        
+        combinations = [['0','0'],['1','1'],['8','8'],['6','9'],['9','6']]
+         
+        
+        return sbg_recursion(n,n)
