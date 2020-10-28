@@ -1,0 +1,18 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:    
+        
+        def helper(index, res):
+            if index == len(nums):
+                result.append(res[::])
+                return
+            cur_num = nums[index]
+            temp = res[::]
+            res.append(cur_num)
+            helper(index+1, res)
+            helper(index+1, temp)
+            
+        result = []
+        helper(0, [])
+        return result
+        
+        
