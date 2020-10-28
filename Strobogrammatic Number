@@ -1,0 +1,10 @@
+class Solution:
+    def isStrobogrammatic(self, num: str) -> bool:
+        sbg_inversion = {"0":'0',"1":"1","6":"9", "8":"8","9":"6"}
+        
+        inverted_num = ""
+        for n in num:
+            if sbg_inversion.get(n):
+                inverted_num = inverted_num + sbg_inversion[n]
+            else: return False
+        return num == inverted_num[::-1]
