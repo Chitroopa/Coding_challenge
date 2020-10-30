@@ -1,0 +1,44 @@
+from collections import defaultdict
+class Solution:
+    def alienOrder(self, words: List[str]) -> str:
+        if not len(words): return ""
+        if len(words) == 1: return "".join(set(words[0]))
+        graph = defaultdict(set)
+        
+        for i in range(len(words) -1):
+            if words[i].startswith(words[i+1]) and (len(words[i+1]) < len(words[i])): return ""
+            for c in words[i]:
+                if not graph.get(c): graph[c]
+            for c in words[i+1]:
+                if not graph.get(c): graph[c]
+            for j in range(min(len(words[i]), len(words[i+1]))):
+                if words[i][j] != words[i+1][j]:
+                    graph[words[i][j]].add(words[i+1][j])
+                    break
+                    
+       
+        inbound_edge_ctr = defaultdict(int)
+        for node in graph: inbound_edge_ctr[node]
+        for node, adj_set in graph.items():
+            for adj in adj_set: inbound_edge_ctr[adj] += 1 
+        
+        
+        res = ""
+        no_inbound_edge = set()
+        for node,ctr in inbound_edge_ctr.items():
+            if ctr == 0: no_inbound_edge.add(node)
+        
+        
+        while len(res) < len(graph):
+            if not no_inbound_edge: return ""
+            new_no_inbound_edge = set()
+            for node in no_inbound_edge:
+                for adj in graph[node]:
+                    inbound_edge_ctr[adj] -= 1
+                    if inbound_edge_ctr[adj] == 0: new_no_inbound_edge.add(adj)
+                res += node
+            no_inbound_edge = new_no_inbound_edge
+        
+        return res
+        
+        
