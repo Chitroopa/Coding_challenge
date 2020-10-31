@@ -1,0 +1,43 @@
+class Solution:
+    def shortestDistance(self, grid: List[List[int]]) -> int:
+        if not grid: return -1
+        rows = len(grid)
+        cols = len(grid[0])
+        
+        distance = [[0]*cols for _ in range(rows)]
+        count = [[0]*cols for _ in range(rows)]
+        
+        def bfs(i,j):
+            directions = ((-1,0),(1,0),(0,1),(0,-1))
+            visited = [[False]*cols for _ in range(rows)]
+            queue = [(i,j,0)]
+            
+            while queue:
+                cur_i, cur_j, step = queue.pop(0)
+                for di,dj in directions:
+                    new_i, new_j = cur_i + di, cur_j +dj
+                    if 0<= new_i<rows and 0<= new_j<cols and not visited[new_i][new_j] and grid[new_i][new_j] == 0:
+                        queue.append((new_i,new_j, step+1))
+                        distance[new_i][new_j] += (step +1)
+                        count[new_i][new_j] +=1
+                        visited[new_i][new_j] = True           
+            
+            
+        buldings = 0
+        
+        for i in range(rows):
+            for j in range(cols):
+                if grid[i][j] == 1:
+                    buldings += 1
+                    bfs(i,j)
+                    
+        min_distance = float('inf')
+        
+        for i in range(rows):
+            for j in range(cols):
+                if distance[i][j] > 0 and count[i][j] == buldings and grid[i][j] == 0:
+                    min_distance = min(min_distance, distance[i][j])
+        
+        return min_distance if min_distance != float('inf') else -1
+                            
+            
