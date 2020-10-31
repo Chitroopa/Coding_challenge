@@ -1,0 +1,34 @@
+from collections import defaultdict
+class Solution:
+    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
+        em_to_name ={}
+        graph = defaultdict(set)
+        
+        for acc in accounts:
+            name = acc[0]
+            for email in acc[1:]:
+                graph[acc[1]].add(email)
+                graph[email].add(acc[1])
+                em_to_name[email] = name
+        
+        visited = set()
+        result = []
+        stack = []
+        
+        
+        for email in graph:
+            if email not in visited:
+                stack.append(email)
+                visited.add(email)
+                group =[]
+                
+                while stack:
+                    cur_email = stack.pop()
+                    group.append(cur_email)
+                    for nei in graph[cur_email]:
+                        if nei not in visited:
+                            visited.add(nei)
+                            stack.append(nei)
+                result.append([em_to_name[email]] + sorted(group))
+        return result
+                
