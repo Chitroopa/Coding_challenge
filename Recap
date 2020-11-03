@@ -25,6 +25,12 @@
     x.zfill(2) # x = "01"
     
     #The zfill() method pads string on the left with zeros to fill width.
+    
+> sort a string
+    s = "bqwxa"
+    print(sorted(s)) # ['a', 'b', 'q', 'w', 'x']
+    temp = "".join(sorted(s)) # temp = abqwx
+
 
 > nonlocal variable #used in nested loops
     nonlocal variable_name
