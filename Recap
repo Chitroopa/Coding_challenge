@@ -20,6 +20,19 @@
 > Infinity 
     a = float('inf') # postive infinity 
     a = float('-inf') # negative infinity
+    
+> integer range from -2147483648 to 2147483647
+
+> exception handler
+    try: 
+        res_int = int(res_str)
+        if -2147483648 < res_int < 2147483647:
+            return res_int
+        else: return -2147483648 if sign == '-' else 2147483647
+    except:
+        return 0
+
+
 > str.Zfill(width)
     x = "1"
     x.zfill(2) # x = "01"
