@@ -1,0 +1,31 @@
+class Solution:
+    def myAtoi(self, s: str) -> int:
+       
+        s1 = s.strip()
+        sign = ""
+        res_str = ""
+        valid_value = '0123456789'
+        start = 0
+        
+        if len(s1) == 0: return 0
+        
+        if s1[0] == '+' or s1[0] == '-':
+            sign = s1[0]
+            start = 1
+        
+        for i in range(start,len(s1)):
+            if s1[i] in valid_value:
+                res_str = res_str + s1[i]
+            else: break
+
+        res_str = sign + res_str
+        
+        try:
+            res_int = int(res_str)
+            if -2147483648 < res_int < 2147483647:
+                return res_int
+            else:
+                return -2147483648 if sign == '-' else 2147483647
+        except:
+            return 0
+        
