@@ -1,0 +1,39 @@
+from collections import Counter
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        
+        if not s or not t:
+            return ""
+        
+        lookup_t = Counter(t)
+        required = len(lookup_t)
+        
+        window = {}
+        left,right = 0,0
+        ans = [float('inf'),0,0] # min_length, start, end
+        formed = 0
+        
+        while right < len(s):
+            char = s[right]
+            
+            window[char] = window.get(char,0) +1
+            if char in lookup_t and lookup_t[char] == window[char]:
+                formed += 1
+            
+            while left <= right and formed == required:
+                if (right-left) + 1 < ans[0]:
+                    ans = [(right-left)+1, left, right]
+                    
+                cur_char = s[left]
+                window[cur_char] -= 1
+                if cur_char in lookup_t and window[cur_char] < lookup_t[cur_char]:
+                    formed -= 1
+                left +=1
+                
+            right += 1
+
+        
+        return "" if ans[0] == float("inf") else s[ans[1] : ans[2]+1]      
+            
+                
+            
