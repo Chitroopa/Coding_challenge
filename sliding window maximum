@@ -1,0 +1,19 @@
+import heapq
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        if k == 1:
+            return nums
+        heap = []
+        res = []
+        
+        for i in range(len(nums)):
+            heappush(heap,(-nums[i],i))
+            
+            while heap[0][1] <= i-k: #lower bound
+                heappop(heap) # only delete max element outside cur window
+            if i-k+1 >=0: #after intial k elements
+                res.append(-heap[0][0])
+        return res
+                
+            
+        
