@@ -1,0 +1,16 @@
+class Solution:
+    def isOneEditDistance(self, s: str, t: str) -> bool:
+        if abs(len(s)- len(t)) > 1 or s == t:
+            return False
+        
+        p1 , p2 = 0,0
+        
+        while p1<len(s) and p2< len(t):
+            if s[p1] == t[p2]:
+                p1 +=1
+                p2 +=1
+                continue
+            else:
+                return s[p1:] == t[p2+1:] or s[p1+1:] == t[p2:] or s[p1+1:] == t[p2+1:]
+            
+        return True
