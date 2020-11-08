@@ -1,0 +1,12 @@
+from collections import defaultdict
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        count = 0     
+        lookup = defaultdict(int)
+        lookup[0] =1
+        sum = 0
+        for num in nums:
+            sum += num
+            count += lookup[sum-k]
+            lookup[sum] +=1
+        return count
