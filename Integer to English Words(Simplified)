@@ -1,0 +1,36 @@
+class Solution:    
+    def numberToWords(self, num: int) -> str:
+        unique = " One Two Three Four Five Six Seven Eight Nine Ten Eleven Twelve Thirteen Fourteen Fifteen Sixteen Seventeen Eighteen Nineteen".split(" ")
+        tens = "  Twenty Thirty Forty Fifty Sixty Seventy Eighty Ninety".split(" ")
+        mods = " Thousand Million Billion".split(" ")
+       
+        
+        if not num: return 'Zero'
+        
+        def helper(num):
+            if not num:
+                return ""
+            elif num < 20:
+                return unique[num] + " "
+            elif num < 100:
+                first_digit = num // 10
+                # second_digit = num % 10
+                return tens[first_digit] + " " + helper(num % 10)
+            else: # num > 100
+                first_digit = num//100
+                return unique[first_digit] +" Hundred " + helper(num%100)
+            
+             
+        
+        result = ""
+        mod_num = 0
+        while num:
+            if num % 1000:
+                result = helper(num % 1000) + mods[mod_num] + " " + result
+            mod_num += 1
+            num //= 1000
+        
+        return result.strip()
+                
+        
+            
