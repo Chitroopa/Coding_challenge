@@ -21,6 +21,11 @@
 
     interval = [[1,4],[0,2]]    # need to sort based on index interval[i][0]
     interval = sorted(interval, key = lambda x:x[0])    # interval = [[0, 2], [1, 4]]
+    
+> remove duplicates from list
+    l = [1,2,3,1,1,1,1]
+    l = list(set(l))
+    print(l) # [1, 2, 3]
 
 > Infinity 
     a = float('inf') # postive infinity 
