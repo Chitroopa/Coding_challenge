@@ -18,7 +18,6 @@
     listname.sort(reverse = True)
 
 > sorting based on index
-
     interval = [[1,4],[0,2]]    # need to sort based on index interval[i][0]
     interval = sorted(interval, key = lambda x:x[0])    # interval = [[0, 2], [1, 4]]
     
@@ -72,6 +71,13 @@
     print([x for x in range(len(a))]) # [0, 1, 2, 3]
     
     # range([start], stop[, step])    
+    
+> Binary Exponential
+    n^0 = 1
+    when n is even  - (x^n/2)^2 # eg x = 4 n= 6 =>(4^3)^2 
+    when n is odd - (x^n/2)^2 * x # eg: x = 4 n = 11 => (4^5)^2 * 4
+    when n is negative - x = 1/x and n = -n
+    
         
 > heap
     #heapq defult is min heap
