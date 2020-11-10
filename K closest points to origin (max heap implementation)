@@ -1,0 +1,28 @@
+import heapq
+class Solution:
+    def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
+# (x1,y1)
+# (x2, y2)
+# d = sqrt((x1-x2)^2 + (y1-y2)^2)
+        def euclideanDist(x2,y2):
+            x1 =0
+            y1 =0            
+            return sqrt((x1-x2)**2 + (y1-y2)**2)
+        distance = []
+        for i in range(len(points)):
+            d = euclideanDist(points[i][0], points[i][1])
+            distance.append((d,i))
+            
+        heap = []    
+        for i in range(len(distance)):
+            d, idx = distance[i]
+            if len(heap) < K:
+                heappush(heap,(-d,idx))
+            else:
+                if d < -heap[0][0]:
+                    heappushpop(heap, (-d,idx))
+        
+        return [points[heappop(heap)[1]] for _ in range(K)]
+                
+        
+        
