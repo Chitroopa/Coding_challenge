@@ -1,0 +1,26 @@
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        def decoding(idx):
+            if idx >= len(s):
+                return 1
+            
+            if lookup.get(idx):
+                return lookup[idx]
+            ways = 0
+            if s[idx] > '0':
+                ways += decoding(idx+1)
+            if (s[idx] == '1' and idx+1< len(s)) or (idx+1 < len(s) and s[idx] == '2' and s[idx+1] < '7'):
+                ways += decoding(idx+2)
+            
+            if idx not in lookup:
+                lookup[idx] = ways
+                
+            return ways
+        
+        lookup = {}
+        return decoding(0)                
+            
+    
+        
+        
+        
