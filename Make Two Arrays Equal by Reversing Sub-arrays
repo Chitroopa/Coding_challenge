@@ -1,0 +1,13 @@
+from collections import Counter
+class Solution:
+    def canBeEqual(self, target: List[int], arr: List[int]) -> bool:
+        target_count = Counter(target)
+        arr_count = Counter(arr)
+        
+        if len(target_count) != len(arr_count):
+            return False
+        for num in target_count:
+            if num not in arr_count or target_count[num] != arr_count[num]:
+                return False
+        
+        return True
