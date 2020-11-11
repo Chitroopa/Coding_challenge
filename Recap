@@ -140,6 +140,34 @@
 #---------------------------------------------<<End>>-------------------------------------------
 
 #----------------------------------------------------------------------------------------------
+# Compexity analysis
+#----------------------------------------------------------------------------------------------
+
+> Recurssion => number of ways ^ n
+    for tree -> 2^n # left and right
+    for decode ways -> 2^n # two possiblities
+    
+> heap 
+    insert/ delete - number of time * log(size of heap) => O(n log n)
+> sort - O(log n)
+
+#substring is a continuous part or subpart of a string
+#subsequence is the part of a string or sequence, that might be continuous or not but the order of the elements is maintained
+
+> substring generation = n(n+1)/2 => O(n^2) 
+> subsequence = two possiblity for a char (with or without) => 2^n => O(2^n)
+> DFS => O(E +V) 
+> BFS => O(E +V)
+
+
+
+#----------------------------------------------------------------------------------------------
+# DS and Algorithm cheat sheet
+#----------------------------------------------------------------------------------------------
+
+
+
+#----------------------------------------------------------------------------------------------
 # DS and Algorithm cheat sheet
 #----------------------------------------------------------------------------------------------
 
