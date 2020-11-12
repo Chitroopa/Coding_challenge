@@ -20,12 +20,22 @@
 > sorting based on index
     interval = [[1,4],[0,2]]    # need to sort based on index interval[i][0]
     interval = sorted(interval, key = lambda x:x[0])    # interval = [[0, 2], [1, 4]]
+
+> sort a string
+    s = "bqwxa"
+    print(sorted(s)) # ['a', 'b', 'q', 'w', 'x']
+    temp = "".join(sorted(s)) # temp = abqwx
     
 > remove duplicates from list
     l = [1,2,3,1,1,1,1]
     l = list(set(l))
     print(l) # [1, 2, 3]
-
+    
+> find product of list elements
+    import numpy
+    a = [1,2,3]
+    print(numpy.prod(a)) # results 6
+    
 > Infinity 
     a = float('inf') # postive infinity 
     a = float('-inf') # negative infinity
@@ -56,12 +66,6 @@
     
     #The zfill() method pads string on the left with zeros to fill width.
     
-> sort a string
-    s = "bqwxa"
-    print(sorted(s)) # ['a', 'b', 'q', 'w', 'x']
-    temp = "".join(sorted(s)) # temp = abqwx
-
-
 > nonlocal variable #used in nested loops
     nonlocal variable_name
 
@@ -88,6 +92,8 @@
     heappop(heap) 
     heap[0] # lookup smallest element 
     heappushpop(heap, item)
+    heapq.nlargest(n, heap) #eg heap = [5,6,7,2] , heapq.nlargest(3,heap) will give [7,6,5]
+    heapq.nsmallest(n, heap) #eg heap = [5,6,7,2] , heapq.nsmallest(3,heap) will give [2,5,6]
     
     # max heap hack
     heappush(heap, -item) # change item value to negative
