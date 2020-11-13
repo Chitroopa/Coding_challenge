@@ -60,7 +60,7 @@
         return 0
 
 
-> str.Zfill(width)
+> str.zfill(width)
     x = "1"
     x.zfill(2) # x = "01"
     
