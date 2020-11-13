@@ -1,0 +1,16 @@
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        def word_break_check(start):
+            if start == len(s):
+                return True
+            
+            for i in range(start+1, len(s)+1):
+                if s[start: i] in word_dict and word_break_check(i):
+                    return True
+            
+            return False
+        word_dict = set(wordDict)
+        return word_break_check(0)
+        
+        
+        
