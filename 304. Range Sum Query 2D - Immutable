@@ -1,0 +1,28 @@
+from collections import defaultdict
+class NumMatrix:
+
+    def __init__(self, matrix: List[List[int]]):
+        self.matrix = matrix
+        self.matrix_row_sum = self.rowSum(matrix)
+
+    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
+        total = 0
+        for row in range(row1, row2+1):
+            total += (self.matrix_row_sum[(row,col2)] - self.matrix_row_sum.get((row,col1 -1),0)) 
+        return total
+        
+    def rowSum(self,matrix):
+        sum_map = defaultdict(int)
+        for row in range(len(self.matrix)):
+            for col in range(len(self.matrix[row])):
+                if col == 0:
+                    sum_map[(row,col)] = self.matrix[row][col]
+                else:
+                    sum_map[(row,col)] = sum_map[(row,col-1)] + self.matrix[row][col]
+        return sum_map
+        
+                
+
+# Your NumMatrix object will be instantiated and called as such:
+# obj = NumMatrix(matrix)
+# param_1 = obj.sumRegion(row1,col1,row2,col2)
