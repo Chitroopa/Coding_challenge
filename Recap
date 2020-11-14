@@ -25,6 +25,38 @@
     s = "bqwxa"
     print(sorted(s)) # ['a', 'b', 'q', 'w', 'x']
     temp = "".join(sorted(s)) # temp = abqwx
+
+> string functions
+    s = abc1324
+    s.isalnum() - The isalnum() method returns True if all characters in the string are alphanumeric (either alphabets or numbers). If not, it returns False.
+    s.isalpha() - The isalpha() method returns True if all characters in the string are alphabets. If not, it returns False.
+    s.isupper() - The string isupper() method returns whether or not all characters in a string are uppercased or not.
+    s.islower() - The islower() method returns True if all alphabets in a string are lowercase alphabets. If the string contains at least one uppercase alphabet, it returns False.
+    s.isdigit() -The isdigit() method returns True if all characters in a string are digits. If not, it returns False.
+
+> ord()- The ord() function returns the number representing the unicode code of a specified character.
+    eg ord("A") returns 65
+    chr(65) returns A # convert back to char
+    
+> Cipher
+    formula - chr((ord(ch) + rotation_factor - starting_of_upper_or_lower_case) %26 + starting_of_upper_or_lower_case)
+    eg: 
+    def rotationalCipher(input, rotation_factor):
+      # Write your code here
+      result = ""
+      for ch in input:
+        if ch.isalnum():
+          if ch.isupper():
+            result += chr((ord(ch) + rotation_factor - 65 ) %26 + 65)
+          elif ch.islower():
+            result += chr((ord(ch) + rotation_factor - 97) %26 + 97)
+          else:
+            result += chr((ord(ch)+ rotation_factor - 48) % 10 + 48)
+        else:
+          result += ch
+      return result
+
+
     
 > remove duplicates from list
     l = [1,2,3,1,1,1,1]
