@@ -1,0 +1,29 @@
+class Solution:
+    def minRemoveToMakeValid(self, s: str) -> str:
+        stack = []
+        index_to_remove = set()
+        
+        for i in range(len(s)):
+            c = s[i]
+            if c not in '()':
+                continue
+            if c == '(':
+                stack.append(i)
+            elif not stack:
+                index_to_remove.add(i)
+            else:
+                stack.pop()
+        
+        while stack:
+            index_to_remove.add(stack.pop())
+        
+        result = []
+        for i in range(len(s)):
+            if i not in index_to_remove:
+                result.append(s[i])
+        
+        return "".join(result) if len(result) > 0 else ""
+        
+        
+        
+                
