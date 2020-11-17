@@ -1,0 +1,15 @@
+class Solution:
+    def shuffle(self, nums: List[int], n: int) -> List[int]:
+        result = []
+        p_1 = 0
+        p_2 = n
+        
+        while p_1 < n and p_2 < len(nums):
+            result.append(nums[p_1])
+            result.append(nums[p_2])
+            p_1 += 1
+            p_2 += 1
+            
+        return result
+            
+        
