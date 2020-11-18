@@ -1,0 +1,22 @@
+# you can write to stdout for debugging purposes, e.g.
+def removeDuplicates(s):
+    if len(s) < 1:
+        return s
+    l_s = s.split(" ")
+    remove_index = []
+
+    for i in range(len(l_s)):
+        for j in range(i+1, len(l_s)):
+            if l_s[i] == l_s[j]:
+                remove_index.append(j)
+
+    result = ""
+    for i in range(len(l_s)):
+        if i not in remove_index:
+            result = result + " " + l_s[i]
+               
+    return result.strip()
+
+print(removeDuplicates("red orange purple black red blue black"))
+print(removeDuplicates("red"))
+
