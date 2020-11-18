@@ -1,0 +1,21 @@
+# you can write to stdout for debugging purposes, e.g.
+def rearrange(nums):
+    length = len(nums)
+    if length <=1:
+        return nums
+    odd = []
+    even = []
+    for i in range(len(nums)):
+        n = nums[i]
+        if (n%2 == 0):
+            even.append(n)
+        else:
+            odd.append(n) 
+
+    return even + odd
+
+print(rearrange([3,4,0,1,2]))
+print(rearrange([3,1,5,9]))
+print(rearrange([0,2,4,6]))
+print(rearrange([]))
+print(rearrange([3]))
