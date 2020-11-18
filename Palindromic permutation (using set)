@@ -1,0 +1,9 @@
+class Solution:
+    def canPermutePalindrome(self, s: str) -> bool:
+        track = set()
+        for c in s:
+            if c in track:
+                track.remove(c)
+            else:
+                track.add(c)
+        return len(track) <= 1
