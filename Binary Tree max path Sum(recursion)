@@ -8,18 +8,15 @@ class Solution:
     def maxPathSum(self, root: TreeNode) -> int:
         def max_gain(node):
             nonlocal max_sum
-            if not node:
+            if not node: 
                 return 0
+            l = max_gain(node.left)
+            r = max_gain(node.right)
             
-            left_gain = max(max_gain(node.left), 0)
-            right_gain = max(max_gain(node.right),0)
+            max_sum = max(max_sum, node.val + l+r)
             
-           
-            max_sum = max(max_sum, node.val + left_gain + right_gain)
-            
-            return node.val + max(left_gain, right_gain)
+            return max(node.val+ max(l,r), 0)
         
         max_sum = float('-inf')
         max_gain(root)
-        
         return max_sum
