@@ -72,7 +72,7 @@
     a = float('inf') # postive infinity 
     a = float('-inf') # negative infinity
     
-> integer range from -2147483648 to 2147483647
+> integer range from -2147483648 to 2147483647 
 
 > to get the place value (ones tens hundreds)
     n = "123"
@@ -113,7 +113,10 @@
     when n is even  - (x^n/2)^2 # eg x = 4 n= 6 =>(4^3)^2 
     when n is odd - (x^n/2)^2 * x # eg: x = 4 n = 11 => (4^5)^2 * 4
     when n is negative - x = 1/x and n = -n
-    
+> dict comprehension
+    nums = [0,1,0,3,0,0,4,0]
+    values = {i:n for i,n in enumerate(nums) if n} # enumerate can take any thing iterable as input and returns element and its index
+    print(values) # {1: 1, 3: 3, 6: 4}
         
 > heap
     #heapq defult is min heap
