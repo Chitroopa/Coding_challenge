@@ -1,0 +1,33 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+from collections import defaultdict
+class Solution:
+    def verticalTraversal(self, root: TreeNode) -> List[List[int]]:
+        
+        if not root: return []
+        
+        queue = [(root,0,0)] # [(node, row, col)]
+        node_map = defaultdict(list)
+        min_col = float('inf')
+        max_col = float('-inf')
+        
+        while queue:
+            node, row, col = queue.pop(0)
+            if node:
+                node_map[col].append((row,node.val))
+                
+                min_col = min(min_col, col)
+                max_col = max(max_col, col)
+                
+                queue.append((node.left, row+1, col-1))
+                queue.append((node.right, row+1, col+1))
+        
+        result = []
+        for col in range(min_col, max_col+1):
+            result.append([value for row,value in sorted(node_map[col])])
+        return result
+                
