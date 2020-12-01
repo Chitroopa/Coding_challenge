@@ -13,3 +13,4 @@ class Solution:
             group[get_distance_tuple(s)].append(s)
         return [group[key] for key in group]
         
+
