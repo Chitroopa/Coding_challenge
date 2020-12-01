@@ -1,0 +1,15 @@
+from collections import defaultdict
+class Solution:
+    def groupStrings(self, strings: List[str]) -> List[List[str]]:
+        def get_distance_tuple(s):
+            result = []
+            for i in range(len(s)-1):
+                #calculate the diff btw adjacent characters in the string
+                result.append((ord(s[i+1]) - ord(s[i]))%26)                
+            return tuple(result)
+                
+        group = defaultdict(list)
+        for s in strings:
+            group[get_distance_tuple(s)].append(s)
+        return [group[key] for key in group]
+        
