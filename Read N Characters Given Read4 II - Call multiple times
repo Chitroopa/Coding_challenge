@@ -1,0 +1,33 @@
+# The read4 API is already defined for you.
+# def read4(buf4: List[str]) -> int:
+
+class Solution:
+    def __init__(self):
+        self.buffer = []
+        
+        
+    def read(self, buf: List[str], n: int) -> int:
+        expected_n = n
+        if self.buffer:
+            buffer_size = len(self.buffer)
+            if buffer_size <=n:
+                for i in range(buffer_size):
+                    buf[expected_n - n] = self.buffer[i]
+                    n -=1
+                self.buffer = []
+            else:
+                for i in range(n):
+                    buf[expected_n -n] = self.buffer.pop(0)
+                    n -= 1
+        count = 4
+        while n > 0 and count == 4:  
+            op_buf = [""] *4
+            count = read4(op_buf)
+            for i in range(min(n, count)):
+                buf[expected_n - n] = op_buf.pop(0)
+                n -=1
+            if op_buf: self.buffer = op_buf
+
+        return expected_n - n
+                    
+        
