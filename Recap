@@ -14,12 +14,16 @@
 > move diagonally in 2d matrix
     [(-1,-1),(1,1),(-1,1),(1,-1)]
     
+> lambda
+    closest = min(node.val, closest, key= lambda x:abs(target - x))
+    
 > sort in decending order # sort is in-place
     listname.sort(reverse = True)
 
 > sorting based on index
     interval = [[1,4],[0,2]]    # need to sort based on index interval[i][0]
     interval = sorted(interval, key = lambda x:x[0])    # interval = [[0, 2], [1, 4]]
+
 
 > sort a string
     s = "bqwxa"
