@@ -133,6 +133,7 @@
     random.random() # get a random number btw 0 to 1
     random.randrange(stop) # get random number within range eg. random.randrange(10)
     random.randrange(start, stop[, step])
+    random.choice([list]) # choose randomly from the list
     
 > heap
     #heapq defult is min heap
