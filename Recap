@@ -129,7 +129,7 @@
     print(values) # {1: 1, 3: 3, 6: 4}
     
 > Random 
-    random() # get a random number
+    random.random() # get a random number
     random.randrange(stop) # get random number within range
     random.randrange(start, stop[, step])
     
