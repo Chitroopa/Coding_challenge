@@ -1,0 +1,54 @@
+class Solution:
+    def shortestBridge(self, A: List[List[int]]) -> int:
+        
+        rows, cols = len(A),len(A[0])
+        directions = ((-1,0),(1,0),(0,-1),(0,1))
+        ans = 0
+        
+        stack,visited = [],set()
+        
+        found = False      
+        # find starting of first Island
+        for i in range(rows):
+            for j in range(cols):
+                if A[i][j] == 1:
+                    stack.append((i,j))
+                    visited.add((i,j))
+                    found = True
+                    break
+            if found:
+                break
+        #DFS
+        while stack:
+            i,j = stack.pop()
+            for di,dj in directions:
+                new_i,new_j = di+i, dj+j
+                if 0<=new_i<rows and 0<=new_j<cols and (new_i,new_j) not in visited and A[new_i][new_j] == 1:
+                    stack.append((new_i,new_j))
+                    visited.add((new_i,new_j))
+        
+        
+        #BFS
+        queue = list(visited)
+        ans = 0
+        
+        while queue:
+            newq= []
+            for i,j in queue:
+                for di,dj in directions:
+                    new_i,new_j = di+i, dj+j
+                    if 0<=new_i<rows and 0<=new_j<cols and (new_i,new_j) not in visited:
+                        if A[new_i][new_j] == 1:
+                            return ans
+                        newq.append((new_i,new_j))
+                        visited.add((new_i,new_j))
+            queue = newq
+            ans += 1
+
+        
+                
+                
+        
+        
+        
+        
