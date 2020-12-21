@@ -1,0 +1,22 @@
+from collections import defaultdict
+import random
+def find_max_occur_index(arr):
+    num_freq = defaultdict(list)
+    
+    for idx,num in enumerate(arr):
+        num_freq[num].append(idx)
+    max_freq_num = 0
+    max_freq = 0
+    for num in num_freq:
+        if len(num_freq[num]) > max_freq:
+            max_freq_num = num
+            max_freq = len(num_freq[num])
+
+    return random.choice(num_freq[max_freq_num])
+        
+    
+print(find_max_occur_index([-1, 4, 9, 7, 7, 2, 7, 3, 0, 9, 6, 5, 7, 8, 9]))
+print(find_max_occur_index([0, 9, 6, 5, 7, 8, 9])) # 1,6
+print(find_max_occur_index([2, 7, 3, 0, 9, 6, 5, 7, 8, 9])) 
+print(find_max_occur_index([1,2,3,4,5,6]))
+    
