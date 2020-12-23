@@ -9,8 +9,8 @@ class Solution:
         
         for i in range(length-1,-1,-1):
             tmp = carry
-            tmp += int(num1[i])
-            tmp += int(num2[i])
+            tmp += ord(num1[i]) - ord('0')
+            tmp += ord(num2[i]) - ord('0')
             
             result = str(tmp % 10) + result
             carry = tmp // 10
