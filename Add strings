@@ -1,12 +1,26 @@
 class Solution:
-    def addStrings(self, num1: str, num2: str) -> str:
+    def addStrings(self, num1: str, num2: str) -> str:               
+        length = max(len(num1), len(num2))
+        num1 = num1.zfill(length)
+        num2 = num2.zfill(length)
         
-        def convert_to_int(nums):
-            result = 0
-            for i in range(len(nums)):
-                result += int(nums[i]) * 10 **(len(nums)-1-i)
-            return result
+        result = ""
+        carry = 0
         
-        return str(convert_to_int(num1) + convert_to_int(num2))
+        for i in range(length-1,-1,-1):
+            tmp = carry
+            tmp += int(num1[i])
+            tmp += int(num2[i])
+            
+            result = str(tmp % 10) + result
+            carry = tmp // 10
+            
+        if carry:
+            result = str(carry) + result
+        
+        return result
+            
+        
+        
         
         
