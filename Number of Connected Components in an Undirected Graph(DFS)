@@ -1,0 +1,29 @@
+from collections import defaultdict
+class Solution:
+    def countComponents(self, n: int, edges: List[List[int]]) -> int:
+        graph = defaultdict(list)
+        
+        for n1,n2 in edges:
+            graph[n1].append(n2)
+            graph[n2].append(n1)
+        
+        
+        stack = []
+        visited = set()
+        result = 0
+        
+        for node in range(n):
+            if node not in visited:
+                stack.append(node)
+                visited.add(node)
+                result += 1
+
+                while stack:
+                    cur_node = stack.pop()
+                    for nei in graph[cur_node]:
+                        if nei not in visited:
+                            stack.append(nei)
+                            visited.add(nei)
+                    
+        return result
+        
