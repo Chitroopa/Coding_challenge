@@ -1,0 +1,28 @@
+from collections import defaultdict
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        graph = defaultdict(list)
+        inbound_edge = [0] * numCourses
+        
+        for course,dependency in prerequisites:
+            graph[dependency].append(course)
+            inbound_edge[course] += 1
+        
+        queue = [c for c in range(numCourses) if inbound_edge[c] == 0]
+        topo_sort = []
+
+        while queue:
+            course = queue.pop(0)
+            topo_sort.append(course)
+            
+            for nei in graph[course]:
+                inbound_edge[nei] -=1
+                if inbound_edge[nei] == 0:
+                    queue.append(nei)
+        
+        if len(topo_sort) == numCourses:
+            return True
+        
+        return False
+        
+        
