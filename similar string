@@ -1,0 +1,21 @@
+def areSimilar(w1,w2):
+    if len(w1) != len(w2):
+        return False
+    idx,diff = [],0
+    
+    for i in range(len(w1)):
+        if w1[i] != w2[i]:
+            idx.append(i)
+            diff += 1
+    
+    return diff == 0 or (diff == 2 and (w1[idx[0]] == w2[idx[1]] and w1[idx[1]] == w2[idx[0]]))
+
+print(areSimilar("tars", "rats")) #True
+print(areSimilar("star", "tars")) # False
+print(areSimilar("star", "rats")) # False
+print(areSimilar("mom", "mommy")) # False
+print(areSimilar("face", "eacf")) # True
+print(areSimilar("star", "star")) # True
+
+
+
