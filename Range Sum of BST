@@ -5,22 +5,24 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def rangeSumBST(self, root: TreeNode, L: int, R: int) -> int:
-        ans = 0
-        def dfs(root: TreeNode, L:int, R: int):
-            nonlocal ans
-
-            if L<=root.val<=R: 
-                ans += root.val            
-                if root.left: dfs(root.left, L, R)
-                if root.right: dfs(root.right, L, R)
-            if root.right and root.val < L:
-                dfs(root.right, L, R)
-            if root.left and root.val > R:
-                dfs(root.left, L, R)              
+    def rangeSumBST(self, root: TreeNode, low: int, high: int) -> int:
+        if not root:
+            return 0
+        result =0 
         
-        dfs(root, L, R)
-        return ans        
-          
+        def dfs(node):
+            nonlocal result
+            if node:
+                if low <= node.val <= high:
+                    result += node.val
+                
+                if low < node.val:
+                    dfs(node.left)
+                if node.val < high:
+                    dfs(node.right)
+        dfs(root)
+        return result
             
-            
+        
+        
+        
