@@ -1,0 +1,45 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+from collections import defaultdict
+class Solution:
+    def subtreeWithAllDeepest(self, root: TreeNode) -> TreeNode:
+        node_depth = defaultdict(list)
+        parent_map = {}
+        queue = [(root,None,0)] #(node,parent,depth)
+
+        while queue:
+            node,parent,depth = queue.pop(0)
+            
+            parent_map[node] = parent
+            node_depth[depth].append(node)
+            
+            if node.left: queue.append((node.left,node,depth+1))
+            if node.right: queue.append((node.right,node,depth+1))
+        
+        max_depth = max(node_depth.keys())
+        
+        target_nodes = node_depth[max_depth]
+        
+        if len(target_nodes) == 1:
+            return target_nodes[0]
+        
+        if len(target_nodes) >= 2:
+            visited = set()
+            node = target_nodes[0]
+            
+            while node:
+                visited.add(node)
+                node = parent_map[node]
+            
+            node = target_nodes[-1]
+            while node:
+                if node in visited:
+                    break
+                node = parent_map[node]
+            return node
+            
+        
