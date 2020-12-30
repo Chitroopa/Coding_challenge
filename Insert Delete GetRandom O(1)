@@ -5,35 +5,38 @@ class RandomizedSet:
         """
         Initialize your data structure here.
         """
-        self.r_set = set()
+        self.r_map = {}
+        self.r_list = []
         
 
     def insert(self, val: int) -> bool:
         """
         Inserts a value to the set. Returns true if the set did not already contain the specified element.
         """
-        l = len(self.r_set)
-        self.r_set.add(val)
+        if val in self.r_map:
+            return False
         
-        return len(self.r_set) == l+1
-        
-
+        self.r_list.append(val)
+        self.r_map[val] = len(self.r_list)-1
+        return True
+    
     def remove(self, val: int) -> bool:
         """
         Removes a value from the set. Returns true if the set contained the specified element.
         """
-        if val in self.r_set:
-            self.r_set.remove(val)
+        if val in self.r_map:
+            last_element, idx = self.r_list[-1], self.r_map[val]
+            self.r_list[idx], self.r_map[last_element] = last_element, idx
+            self.r_list.pop()
+            del self.r_map[val]
             return True
         return False
-
     def getRandom(self) -> int:
         """
         Get a random element from the set.
         """
         
-        r_list = list(self.r_set)
-        return random.choice(r_list)
+        return random.choice(self.r_list)
     
         
         
