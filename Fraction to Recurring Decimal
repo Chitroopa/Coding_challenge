@@ -1,0 +1,17 @@
+class Solution:
+    def fractionToDecimal(self, n, d):
+        if n % d == 0: return str(n // d)
+        p,q = abs(n), abs(d)
+        r = p % q
+        prefix = ("" if (n > 0) == (d > 0) else "-") + str(p//q) + "."
+        suffix = ""
+        index = {}
+        
+        while r not in index:
+            index[r] = len(suffix)
+            suffix += str(r *10 //q)
+            r = r * 10 % q
+            if r == 0: return prefix + suffix 
+        return prefix + suffix[:index[r]] + "(" + suffix[index[r]:] + ")"   
+        
+    
